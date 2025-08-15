@@ -31,6 +31,7 @@
             let num = 0;
             while (true) {
                 choice = prompt("Enter your move (rock/paper/scissors):");
+                choice = choice.toLowerCase();
                 if (choice === 'rock' || choice === 'scissors' || choice === 'paper'){
                     return choice;
                 }else {
@@ -39,9 +40,27 @@
 
             }
         }
+
+        // a single round
+        function playRound(hMove, cMove){
+            if (hMove === 'rock' && cMove === 'scissors' || hMove === 'scissors' && cMove === 'paper' || hMove === 'paper' && cMove === 'rock'){
+                console.log("You win !");
+                console.log(`${hMove} beats ${cMove}`);
+                human++;
+            } else if (hMove === cMove){
+                console.log("It's a tie.")
+            }else {
+                console.log("You lose!")
+                console.log(`${cMove} beats ${hMove}`);
+                cpu++;
+            }
+        }
         
-        // getComputerChoice();
-        // getHumanChoice()
+        const humanMove = getHumanChoice();
+        const computerMove = getComputerChoice()
+        
+        playRound(humanMove, computerMove);
+        console.log(`YOU : ${human}\nCPU : ${cpu} `);
 
     </script>
 </body>
