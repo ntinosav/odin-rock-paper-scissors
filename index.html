@@ -8,7 +8,41 @@
 <body>
    
     <script>
+
+        // initialize moves array
+        let moves = ['rock', 'paper', 'scissors'];
+
+        // initialize score
+        let human = 0 ;
+        let cpu = 0 ;
+
+        //  computer : choose move randomly
+
+        function getComputerChoice(){
+            let num = Math.floor((Math.random()*3)) ;
+            // console.log(moves[num]);
+            return moves[num];
+            
+        }
+
+        // user : enter desired move
+
+        function getHumanChoice(){
+            let num = 0;
+            while (true) {
+                choice = prompt("Enter your move (rock/paper/scissors):");
+                if (choice === 'rock' || choice === 'scissors' || choice === 'paper'){
+                    return choice;
+                }else {
+                    console.log("Invalid choice. Please try again");
+                }
+
+            }
+        }
         
+        // getComputerChoice();
+        // getHumanChoice()
+
     </script>
 </body>
 </html>
