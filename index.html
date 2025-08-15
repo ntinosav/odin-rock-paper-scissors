@@ -47,7 +47,7 @@
             let human = 0 ;
             let cpu = 0 ;
 
-            // a single round
+            // a single round - declaration/definition
             function playRound(hMove, cMove){
                 hMove = getHumanChoice();
                 cMove = getComputerChoice()
@@ -68,6 +68,13 @@
                 playRound();
             }
             console.log(`YOU : ${human}\nCPU : ${cpu} `);
+            if (human > cpu) {
+                console.log("You won !");
+            }else if(human < cpu) {
+                console.log("You lost...");
+            }else {
+                console.log("It's a tie .");
+            }
         }
         
         playGame();
