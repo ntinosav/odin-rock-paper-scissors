@@ -12,9 +12,7 @@
         // initialize moves array
         let moves = ['rock', 'paper', 'scissors'];
 
-        // initialize score
-        let human = 0 ;
-        let cpu = 0 ;
+
 
         //  computer : choose move randomly
 
@@ -41,26 +39,39 @@
             }
         }
 
-        // a single round
-        function playRound(hMove, cMove){
-            if (hMove === 'rock' && cMove === 'scissors' || hMove === 'scissors' && cMove === 'paper' || hMove === 'paper' && cMove === 'rock'){
-                console.log("You win !");
-                console.log(`${hMove} beats ${cMove}`);
-                human++;
-            } else if (hMove === cMove){
-                console.log("It's a tie.")
-            }else {
-                console.log("You lose!")
-                console.log(`${cMove} beats ${hMove}`);
-                cpu++;
+
+        
+        // the whole game
+        function playGame() {
+            // initialize score
+            let human = 0 ;
+            let cpu = 0 ;
+
+            // a single round
+            function playRound(hMove, cMove){
+                hMove = getHumanChoice();
+                cMove = getComputerChoice()
+                if (hMove === 'rock' && cMove === 'scissors' || hMove === 'scissors' && cMove === 'paper' || hMove === 'paper' && cMove === 'rock'){
+                    console.log("You win !");
+                    console.log(`${hMove} beats ${cMove}`);
+                    human++;
+                } else if (hMove === cMove){
+                    console.log("It's a tie.")
+                }else {
+                    console.log("You lose!")
+                    console.log(`${cMove} beats ${hMove}`);
+                    cpu++;
+                }
+            }       
+
+            for (let i = 0; i < 5; i++){
+                playRound();
             }
+            console.log(`YOU : ${human}\nCPU : ${cpu} `);
         }
         
-        const humanMove = getHumanChoice();
-        const computerMove = getComputerChoice()
+        playGame();
         
-        playRound(humanMove, computerMove);
-        console.log(`YOU : ${human}\nCPU : ${cpu} `);
 
     </script>
 </body>
