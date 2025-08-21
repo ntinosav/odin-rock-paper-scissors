@@ -7,6 +7,22 @@
 </head>
 <body>
    
+    <h2>Rock - Paper - Scissors</h2>
+    <blockquote>The rules are simple.
+        <ul>
+            <li>Rock beats Scissors</li>
+            <li>Scissors beats Paper </li>
+            <li>Paper beats Rock</li>
+        </ul>
+        First to 5 points wins !
+    </blockquote>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <div id="match">Progress :</div>
+    
+
     <script>
 
         // initialize moves array
@@ -25,59 +41,92 @@
 
         // user : enter desired move
 
-        function getHumanChoice(){
-            let num = 0;
-            while (true) {
-                choice = prompt("Enter your move (rock/paper/scissors):");
-                choice = choice.toLowerCase();
-                if (choice === 'rock' || choice === 'scissors' || choice === 'paper'){
-                    return choice;
-                }else {
-                    console.log("Invalid choice. Please try again");
-                }
+        // function getHumanChoice(){
+        //     let num = 0;
+        //     while (true) {
+        //         choice = prompt("Enter your move (rock/paper/scissors):");
+        //         choice = choice.toLowerCase();
+        //         if (choice === 'rock' || choice === 'scissors' || choice === 'paper'){
+        //             return choice;
+        //         }else {
+        //             console.log("Invalid choice. Please try again");
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
 
         
-        // the whole game
-        function playGame() {
+        let btns = Array.from(document.querySelectorAll("button"));
+        let match = document.querySelector("#match");
+        
+
+
+        function playGame(match) {
             // initialize score
             let human = 0 ;
             let cpu = 0 ;
-
+            const progress = document.createElement("ul");
+            match.appendChild(progress);
             // a single round - declaration/definition
-            function playRound(hMove, cMove){
-                hMove = getHumanChoice();
+            function playRound(hMove, match){
+                let result = document.createElement("li");
                 cMove = getComputerChoice()
                 if (hMove === 'rock' && cMove === 'scissors' || hMove === 'scissors' && cMove === 'paper' || hMove === 'paper' && cMove === 'rock'){
-                    console.log("You win !");
-                    console.log(`${hMove} beats ${cMove}`);
+                    result.innerText = `You won ! --     "${hMove}" beats "${cMove}"` 
+                    progress.appendChild(result);
                     human++;
                 } else if (hMove === cMove){
+                    result.innerText = "It's a tie.";
+                    progress.appendChild(result);
                     console.log("It's a tie.")
                 }else {
-                    console.log("You lose!")
-                    console.log(`${cMove} beats ${hMove}`);
+                    result.innerText = `You lost ! --     "${cMove}" beats "${hMove}"`;
+                    progress.appendChild(result);
                     cpu++;
                 }
-            }       
 
-            for (let i = 0; i < 5; i++){
-                playRound();
+                if (human === 5 || cpu === 5) {
+                    if (human > cpu) {
+                        alert("You won");
+                    }else {
+                        alert("The computer won !");
+                    }
+                    return 0;
+                }
             }
-            console.log(`YOU : ${human}\nCPU : ${cpu} `);
-            if (human > cpu) {
-                console.log("You won !");
-            }else if(human < cpu) {
-                console.log("You lost...");
-            }else {
-                console.log("It's a tie .");
+
+            
+            for (let i =0; i< btns.length ; i++){
+                btns[i].addEventListener("click", () => playRound(btns[i].id, match));
             }
+
+
+
+
         }
+
+        playGame(match);
+
+
         
-        playGame();
+
+
+
+            // for (let i = 0; i < 5; i++){
+            //     playRound();
+            // }
+            // console.log(`YOU : ${human}\nCPU : ${cpu} `);
+            // if (human > cpu) {
+            //     console.log("You won !");
+            // }else if(human < cpu) {
+            //     console.log("You lost...");
+            // }else {
+            //     console.log("It's a tie .");
+            // }
+        
+        
+        // playGame();
         
 
     </script>
