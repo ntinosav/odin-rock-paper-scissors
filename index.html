@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock - Paper - Scissors</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: bisque;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0px;
+        }
+        .score {
+            display: flex;
+            flex-direction: column;    
+            width: 50%; 
+            margin-left: auto;
+            margin-right: auto; 
+            margin-bottom: 20px;
+            border: 3px solid red;   
+        }
+
+        .score h3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        button {
+            width: 100px;
+            height: 50px;
+        }
+
+        #match {
+            margin-top: 30px;
+            width: 50%;
+            background-color: black;
+            color: white;
+            margin-left: auto;
+            margin-right: auto; 
+            padding: 5px 5px;
+        }
+    </style>
 </head>
 <body>
    
@@ -16,6 +56,20 @@
         </ul>
         First to 5 points wins !
     </blockquote>
+
+    <div class="score">
+        <h3>Score :</h3>
+        <table>
+            <thead>
+                <td>Player</td>
+                <td>CPU</td>
+            </thead>
+            <tr>
+                <td id="player">0</td>
+                <td id="cpu">0</td>
+            </tr>
+        </table>
+    </div>
 
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
