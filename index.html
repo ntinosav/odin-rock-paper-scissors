@@ -26,8 +26,8 @@
                 <td>CPU</td>
             </thead>
             <tr>
-                <td id="player">0</td>
-                <td id="cpu">0</td>
+                <td id="player"></td>
+                <td id="cpu"></td>
             </tr>
         </table>
     </div>
@@ -42,7 +42,6 @@
 
         // initialize moves array
         let moves = ['rock', 'paper', 'scissors'];
-
 
 
         //  computer : choose move randomly
@@ -81,34 +80,47 @@
             // initialize score
             let human = 0 ;
             let cpu = 0 ;
+            const playerScore = document.getElementById("player");
+            const cpuScore = document.getElementById("cpu");
+            playerScore.innerText = human;
+            cpuScore.innerText = cpu;
+
+
+
             const progress = document.createElement("ul");
             match.appendChild(progress);
             // a single round - declaration/definition
             function playRound(hMove, match){
-                let result = document.createElement("li");
-                cMove = getComputerChoice()
-                if (hMove === 'rock' && cMove === 'scissors' || hMove === 'scissors' && cMove === 'paper' || hMove === 'paper' && cMove === 'rock'){
-                    result.innerText = `You won ! --     "${hMove}" beats "${cMove}"` 
-                    progress.appendChild(result);
-                    human++;
-                } else if (hMove === cMove){
-                    result.innerText = "It's a tie.";
-                    progress.appendChild(result);
-                    console.log("It's a tie.")
-                }else {
-                    result.innerText = `You lost ! --     "${cMove}" beats "${hMove}"`;
-                    progress.appendChild(result);
-                    cpu++;
-                }
-
-                if (human === 5 || cpu === 5) {
-                    if (human > cpu) {
-                        alert("You won");
+                if (human < 5 && cpu < 5) {
+                    let result = document.createElement("li");
+                    cMove = getComputerChoice()
+                    if (hMove === 'rock' && cMove === 'scissors' || hMove === 'scissors' && cMove === 'paper' || hMove === 'paper' && cMove === 'rock'){
+                        result.innerText = `You won ! --     "${hMove}" beats "${cMove}"` 
+                        progress.appendChild(result);
+                        human++;
+                    } else if (hMove === cMove){
+                        result.innerText = "It's a tie.";
+                        progress.appendChild(result);
                     }else {
-                        alert("The computer won !");
+                        result.innerText = `You lost ! --     "${cMove}" beats "${hMove}"`;
+                        progress.appendChild(result);
+                        cpu++;
                     }
-                    return 0;
+                    playerScore.innerText = human;
+                    cpuScore.innerText = cpu;
+
+                    if (human === 5 || cpu === 5) {
+                        if (human > cpu) {
+                            alert("You won");
+                        }else {
+                            alert("The computer won !");
+                        }
+                        return 0;
+                    }
+                }else {
+                    alert("Please Refresh to Play Again");
                 }
+                                
             }
 
             
@@ -121,27 +133,12 @@
 
         }
 
+
+
         playGame(match);
 
 
-        
-
-
-
-            // for (let i = 0; i < 5; i++){
-            //     playRound();
-            // }
-            // console.log(`YOU : ${human}\nCPU : ${cpu} `);
-            // if (human > cpu) {
-            //     console.log("You won !");
-            // }else if(human < cpu) {
-            //     console.log("You lost...");
-            // }else {
-            //     console.log("It's a tie .");
-            // }
-        
-        
-        // playGame();
+    
         
 
     </script>
