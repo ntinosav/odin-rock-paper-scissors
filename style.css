@@ -36,3 +36,9 @@
             margin-right: auto; 
             padding: 5px 5px;
         }
+
+
+        #player,#cpu {
+            font-size: xx-large;
+            font-weight: 700;
+        }
