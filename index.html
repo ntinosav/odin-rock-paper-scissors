@@ -35,6 +35,9 @@
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
+    <div>
+        <button id="reset">Reset</button>
+    </div>
     <div id="match">Progress :</div>
     
 
@@ -53,31 +56,20 @@
             
         }
 
-        // user : enter desired move
-
-        // function getHumanChoice(){
-        //     let num = 0;
-        //     while (true) {
-        //         choice = prompt("Enter your move (rock/paper/scissors):");
-        //         choice = choice.toLowerCase();
-        //         if (choice === 'rock' || choice === 'scissors' || choice === 'paper'){
-        //             return choice;
-        //         }else {
-        //             console.log("Invalid choice. Please try again");
-        //         }
-
-        //     }
-        // }
-
 
         
         let btns = Array.from(document.querySelectorAll("button"));
+        btns.pop();
+        let reset = document.querySelector("#reset");
         let match = document.querySelector("#match");
+
+        const progress = document.createElement("ul");
+        match.appendChild(progress);
         
 
 
         function playGame(match) {
-            // initialize score
+            // initialize score and scorecard
             let human = 0 ;
             let cpu = 0 ;
             const playerScore = document.getElementById("player");
@@ -86,9 +78,9 @@
             cpuScore.innerText = cpu;
 
 
+            // create ul showing match progress
 
-            const progress = document.createElement("ul");
-            match.appendChild(progress);
+
             // a single round - declaration/definition
             function playRound(hMove, match){
                 if (human < 5 && cpu < 5) {
@@ -118,7 +110,7 @@
                         return 0;
                     }
                 }else {
-                    alert("Please Refresh to Play Again");
+                    alert("Please Press 'Reset' to Play Again");
                 }
                                 
             }
@@ -128,9 +120,21 @@
                 btns[i].addEventListener("click", () => playRound(btns[i].id, match));
             }
 
+            reset.addEventListener("click", () => { 
+                                                human = 0;
+                                                cpu = 0;
+                                                playerScore.innerText = human;
+                                                cpuScore.innerText = cpu;
+                                                resetGame(match);});
 
 
 
+
+        }
+
+        function resetGame(match){
+            let prog = match.querySelector("ul");
+            prog.innerText = "";    
         }
 
 
